@@ -1,7 +1,6 @@
 public class Game{
     private Boolean _finished = false;
     private int _points = 0;
-    private string _fileName;
     private List<Goal> _goals = new List<Goal>();
 
     public void Start(){
@@ -10,7 +9,7 @@ public class Game{
         while(!_finished){
             // Print out how many points the user has
             Console.WriteLine();
-            Console.WriteLine($"You have {0} points\n", _points);
+            Console.WriteLine("You have {0} points\n", _points);
 
             // Print the menu and get the user's choice
             printMenu();
@@ -38,11 +37,19 @@ public class Game{
                 break;
             case "4":
                 // Load the goals
-                Console.WriteLine("You chose to load the goals.");
+                _goals = GoalUtilities.loadGoals();
+                _points = GoalUtilities.recalculatePoints(_goals);
                 break;
             case "5":
                 // Record an event
-                Console.WriteLine("You chose to record an event.");
+                int goalNum = GoalUtilities.getGoalNum(_goals);
+
+                int pointsEarned = _goals[goalNum - 1].recordCompletion();
+
+                Console.WriteLine("You earned {0} points!", pointsEarned);
+                Console.WriteLine("goalNum: {0}", goalNum);
+
+                _points += pointsEarned;
                 break;
             case "6":
                 // Quit the game
