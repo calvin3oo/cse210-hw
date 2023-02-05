@@ -11,6 +11,12 @@ public class Goal{
         this._completionPoints = _completionPoints;
         this._completed = false;
     }
+    public Goal(string _name, string _description, int _completionPoints, Boolean _completed){
+        this._name = _name;
+        this._description = _description;
+        this._completionPoints = _completionPoints;
+        this._completed = _completed;
+    }
 
     // Make methods that are to be overridden TODO
     public override string ToString(){

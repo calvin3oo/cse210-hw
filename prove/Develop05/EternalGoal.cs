@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 class EternalGoal: Goal{
     public string _type { get; set; } = "Eternal";
     public int _timesCompleted { get; set; }
@@ -5,8 +7,9 @@ class EternalGoal: Goal{
     : base(_name, _description, _completionPoints){
         this._timesCompleted = 0;
     }
-    public EternalGoal(string _name, string _description, int _completionPoints, int _timesCompleted)
-    : base(_name, _description, _completionPoints){
+    [JsonConstructor]
+    public EternalGoal(string _name, string _description, int _completionPoints, int _timesCompleted, Boolean _completed)
+    : base(_name, _description, _completionPoints, _completed){
         this._timesCompleted = _timesCompleted;
     }
 

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 class ChecklistGoal: Goal{
     public string _type { get; set; } = "Checklist";
     public int _timesCompleted { get; set; }
@@ -6,6 +8,14 @@ class ChecklistGoal: Goal{
 
     public ChecklistGoal(string _name, string _description, int _completionPoints, int _numOfTimesToDo, int _pointsPerCompletion)
     : base(_name, _description, _completionPoints){
+        this._numOfTimesToDo = _numOfTimesToDo;
+        this._pointsPerCompletion = _pointsPerCompletion;
+    }
+    [JsonConstructor]
+    public ChecklistGoal(string _name, string _description, int _completionPoints, int _numOfTimesToDo, int _pointsPerCompletion
+    , int _timesCompleted, Boolean _completed)
+    : base(_name, _description, _completionPoints, _completed){
+        this._timesCompleted = _timesCompleted;
         this._numOfTimesToDo = _numOfTimesToDo;
         this._pointsPerCompletion = _pointsPerCompletion;
     }
